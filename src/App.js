@@ -11,6 +11,8 @@ function App() {
 	const [result, setResult] = useState("");
 	const [error, setError] = useState("");
 
+	const [sadTheme, setSadTheme] = useState(false);
+
 	useEffect(() => {
 		setLoading(true);
 		fetch("https://mock-stock-api.herokuapp.com/getValue")
@@ -25,12 +27,14 @@ function App() {
 
 	const check = () => {
 		if (!boughtPrice) {
+			setSadTheme(false);
 			setResult("");
 			setError("Please enter Bought Price");
 			return;
 		}
 
 		if (!quantity) {
+			setSadTheme(false);
 			setResult("");
 			setError("Please enter Quantity");
 			return;
@@ -38,6 +42,7 @@ function App() {
 
 		if (boughtPrice < currentPrice) {
 			setError("");
+			setSadTheme(false);
 			setResult(
 				`You have a profit of ${
 					(currentPrice - boughtPrice) * quantity
@@ -55,16 +60,22 @@ function App() {
 					100 * ((-currentPrice + boughtPrice) / boughtPrice)
 				)}% 😵`
 			);
+			if (
+				Math.floor(100 * ((-currentPrice + boughtPrice) / boughtPrice)) >= 50
+			) {
+				setSadTheme(true);
+			}
 		}
 		if (boughtPrice === currentPrice) {
 			setError("");
+			setSadTheme(false);
 			setResult(`No pain, no gain and no gain, no pain`);
 		}
 	};
 
 	return (
 		<div className="App">
-			<header className="App-header">
+			<header className={sadTheme ? "sad" : "App-header"}>
 				<h1>Profit or Loss</h1>
 				<div className="input-container">
 					<label className="input-label">
@@ -77,6 +88,7 @@ function App() {
 								setBoughtPrice(parseInt(e.target.value));
 								setResult("");
 								setError("");
+								setSadTheme(false);
 							}}
 						/>
 					</label>
@@ -90,6 +102,7 @@ function App() {
 								setQuantity(parseInt(e.target.value));
 								setResult("");
 								setError("");
+								setSadTheme(false);
 							}}
 						/>
 					</label>

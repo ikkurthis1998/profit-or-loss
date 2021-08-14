@@ -13,6 +13,17 @@
 	color: white;
 }
 
+.sad {
+	background-color: rgba(255, 0, 0, 0.5);
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
+}
+
 .input-container {
 	display: flex;
 	flex-direction: column;
@@ -49,12 +60,15 @@
 
 .green {
 	color: green;
+	font-weight: bold;
 }
 
 .red {
 	color: red;
+	font-weight: bold;
 }
 
 .white {
 	color: white;
+	font-weight: bold;
 }
