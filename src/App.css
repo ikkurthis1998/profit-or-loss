@@ -72,3 +72,11 @@
 	color: white;
 	font-weight: bold;
 }
+
+.price-notification {
+	font-size: 14px;
+	color: yellow;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	/* margin-left: -0.75rem; */
+}

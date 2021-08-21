@@ -46,9 +46,10 @@ function App() {
 			setResult(
 				`You have a profit of ${
 					(currentPrice - boughtPrice) * quantity
-				}, that is ${Math.floor(
-					100 * ((currentPrice - boughtPrice) / boughtPrice)
-				)}% 🎉`
+				}, that is ${(
+					100 *
+					((currentPrice - boughtPrice) / boughtPrice)
+				).toFixed(2)}% 🎉`
 			);
 		}
 		if (boughtPrice > currentPrice) {
@@ -56,12 +57,13 @@ function App() {
 			setResult(
 				`You have a loss of ${
 					(-currentPrice + boughtPrice) * quantity
-				}, that is ${Math.floor(
-					100 * ((-currentPrice + boughtPrice) / boughtPrice)
-				)}% 😵`
+				}, that is ${(
+					100 *
+					((-currentPrice + boughtPrice) / boughtPrice)
+				).toFixed(2)}% 😵`
 			);
 			if (
-				Math.floor(100 * ((-currentPrice + boughtPrice) / boughtPrice)) >= 50
+				(100 * ((-currentPrice + boughtPrice) / boughtPrice)).toFixed(2) >= 50
 			) {
 				setSadTheme(true);
 			}
@@ -69,7 +71,7 @@ function App() {
 		if (boughtPrice === currentPrice) {
 			setError("");
 			setSadTheme(false);
-			setResult(`No pain, no gain and no gain, no pain`);
+			setResult(`No pain, no gain & no gain, no pain`);
 		}
 	};
 
@@ -108,6 +110,9 @@ function App() {
 					</label>
 					<label className="input-label">
 						Current Price:
+						<span className="price-notification">
+							Price is updated every minute using an API.
+						</span>
 						<input
 							type="text"
 							className="input"
